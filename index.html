@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeu de Questions sur la Diversité</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(-45deg, #65b4e3, #2981c3, #16569f, #0c265c);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            margin: 0;
+            padding: 20px;
+            color: #0d1136;
+            min-height: 100vh;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        header {
+            background: linear-gradient(to right, #16569f, #2981c3);
+            color: #0d1136;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(12, 38, 92, 0.1);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        header:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 8px rgba(12, 38, 92, 0.15);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 700;
+            text-shadow: 1px 1px 2px rgba(12, 38, 92, 0.1);
+        }
+
+        .board {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            width: 100%;
+        }
+
+        .category-column {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .category-title {
+            background: linear-gradient(45deg, #2981c3, #65b4e3);
+            color: #0d1136;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(12, 38, 92, 0.1);
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .category-title:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(12, 38, 92, 0.15);
+        }
+
+        .question-cell {
+            background: linear-gradient(45deg, #16569f, #2981c3);
+            color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(12, 38, 92, 0.1);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .question-cell::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, rgba(101, 180, 227, 0.2), rgba(101, 180, 227, 0));
+            transform: rotate(45deg);
+            transition: all 0.3s ease;
+        }
+
+        .question-cell:hover::before {
+            top: -100%;
+            left: -100%;
+        }
+
+        .question-cell:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 4px 8px rgba(12, 38, 92, 0.15);
+            border-color: #65b4e3;
+        }
+
+        .question-cell.disabled {
+            background: linear-gradient(45deg, #0c265c, #0d1136);
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        #question-display {
+            background: linear-gradient(45deg, #2981c3, #65b4e3);
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+            box-shadow: 0 4px 10px rgba(12, 38, 92, 0.1);
+            text-align: center;
+            max-width: 90%;
+            width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            transition: all 0.3s ease;
+        }
+
+        #question-display:not(.hidden) {
+            animation: popIn 0.5s cubic-bezier(0.26, 0.53, 0.74, 1.48);
+        }
+
+        @keyframes popIn {
+            0% { opacity: 0; transform: scale(0.5); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        #question-text {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #0d1136;
+        }
+
+        #answer {
+            font-size: 20px;
+            margin-top: 20px;
+            font-style: italic;
+            color: #0c265c;
+        }
+
+        #timer {
+            font-size: 24px;
+            font-weight: bold;
+            color: #0c265c;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        #show-answer {
+            background: linear-gradient(45deg, #16569f, #2981c3);
+            color: #ffffff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(12, 38, 92, 0.1);
+        }
+
+        #show-answer:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 4px 8px rgba(12, 38, 92, 0.15);
+            background: linear-gradient(45deg, #2981c3, #16569f);
+        }
+
+        #teams {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 40px;
+        }
+
+        .team {
+            background: linear-gradient(45deg, #2981c3, #65b4e3);
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(12, 38, 92, 0.1);
+            transition: all 0.3s ease;
+            color: #0d1136;
+            font-weight: bold;
+        }
+
+        .team:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 12px rgba(12, 38, 92, 0.15);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @keyframes gentle-bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .question-cell:not(.disabled):hover {
+            animation: gentle-bounce 0.5s infinite;
+        }
+
+    </style>
+
+
+</head>
+<body>
+    <header>
+        <h1>Jeu ÉDI</h1>
+        <h2>Présenté par les méta-visionnaires</h2>
+    </header>
+
+    <div class="board" id="board"></div>
+
+    <div id="question-display" class="hidden">
+        <div id="timer">Temps restant: <span id="time-left">15</span>s</div>
+        <div id="question-text"></div>
+        <button id="show-answer">Afficher la réponse</button>
+        <div id="answer"></div>
+    </div>
+
+    <div id="teams">
+        <div class="team" id="team1">Équipe 1: <span id="team1-score">0</span> $</div>
+        <div class="team" id="team2">Équipe 2: <span id="team2-score">0</span> $</div>
+    </div>
+
+
+    <script>
+
+let timer;
+let currentTime = 15;
+let currentQuestion = null;
+let scores = { team1: 0, team2: 0};
+
+
+const questions = [
+    {
+        category: "Statistiques sur la Diversité",
+        questions: [
+            {
+                points: 500,
+                question: "Quelle proportion des entreprises utilisent des mesures favorables à la diversité ?",
+                answer: "40%"
+            },
+            {
+                points: 500,
+                question: "Une entreprise qui présente une excellente diversité de membres exécutifs est financièrement plus performante que les moins bonnes en la matière d'environ combien ?",
+                answer: "30%"
+            },
+            {
+                points: 750,
+                question: "En général, quel pourcentage des entreprises considèrent la diversité comme un sujet important? à plus au moins 10%",
+                answer: "Plus de 70%"
+            }
+        ]
+    },
+    {
+        category: "Dimensions de la Diversité",
+        questions: [
+            {
+                points: 250,
+                question: " Quelles sont quelques dimensions de la diversité que les entreprises peuvent prendre en compte, nommez-en 2?",
+                answer: "Le genre, l'âge, la nationalité, la carrière, l'éducation, autres réponses valides.",
+            },
+            {
+                points: 250,
+                question: " Quels types de diversité sont moins visibles mais tout aussi importants ?",
+                answer: "L'éducation, la culture, l'expérience, l'identité de genre, et les croyances politiques."
+            },
+            {
+                points: 250,
+                question: "En général, quel pourcentage des entreprises considèrent la diversité comme un sujet important? à plus au moins 10%",
+                answer: "Plus de 70%"
+            }
+        ]
+    },
+    {
+        category: "Impact de la Diversité en milieu de travail",
+        questions: [
+            {
+                points: 750,
+                question: "Quel type de conflit peut être bénéfique pour la performance des équipes ?",
+                answer: "Les conflits de tâche",
+            },
+            {
+                points: 750,
+                question: "Quel type de diversité doit être souvent considérée parce qu'elle peut avoir un impact négatif sur la performance des équipes en augmentant les conflits relationnels ?",
+                answer: "Diversité de valeurs"
+            },
+            {
+                points: 750,
+                question: " Quel type de diversité parmi les suivantes a un effet positif sur la performance des équipes en logiciel ?",
+                answer: "Diversité de connaissance"
+            }
+        ]
+    },
+    {
+        category: "Concepts et Définitions",
+        questions: [
+            {
+                points: 100,
+                question: " Qu'est-ce que signifie l'acronyme EDI ?",
+                answer: "Équité, Diversité et Inclusion",
+            },
+            {
+                points: 300,
+                question: "Quel mot désigne le travail en équipe professionnelle entre plusieurs domaines ?",
+                answer: "Interdisciplinarité"
+            },
+            {
+                points: 500,
+                question: " Selon Stéphanie Camaréna, experte interdisciplinaire, les équipes devraient considérer l'écoute de multiples points de vue comme un \"__ de temps\".",
+                answer: "Investissement"
+            }
+        ]
+    },
+    {
+        category: "Pratiques et Éthique en groupe de travail",
+        questions: [
+            {
+                points: 200,
+                question: " Vrai ou faux, la gestion efficace d'une diversité au niveau des valeurs dans les groupes de travail est une condition de plus en plus critique pour la réussite d'un projet ?",
+                answer: "Vrai",
+            },
+            {
+                points: 250,
+                question: "En quoi une base de données utilisée pour entraîner une IA peut-elle ne pas respecter les principes ÉDI ?",
+                answer: "Si elle contient des attributs de gens, que ceux-ci ne soient pas suffisamment diversifiés."
+            },
+            {
+                points: 500,
+                question: " Quel est l'avantage d'un environnement de communication inclusif dans une équipe ?",
+                answer: "Il permet de partager plus facilement divers points de vue."
+            }
+        ]
+    },
+    {
+        category: "Discrimination et Équité",
+        questions: [
+            {
+                points: 250,
+                question: "Nommer 3 motifs de discrimination interdits au Québec.",
+                answer: " Sexe, identité/expression de genre, couleur, orientation sexuelle, langue, religion, état civil, âge, origine ethnique/nationale, condition sociale, handicap.",
+            },
+            {
+                points: 500,
+                question: " Nommer au moins deux actions d'ÉDI que peut prendre un employeur dès le stade du recrutement.",
+                answer: " assouplir les compétences requises pour le poste, comme le niveau de maîtrise de langues, le niveau d'étude, de connaissance du marché. Utiliser un langage inclusif dans la description du poste, mention de mesures pour personnes handicapées, élargir les bassins de recrutement etc."
+            },
+            {
+                points: 250,
+                question: "Entre la diversité, l'inclusion et l'équité, lequel de ces trois facteurs est-il souvent considéré comme étant la plus grosse lacune au sein d'une entreprise ?",
+                answer: "L'équité"
+            }
+        ]
+    },
+    {
+        category: "Mystère - Categories aléatoires",
+        questions: [
+            {
+                points: 400,
+                question: "Que peuvent faire les équipes pour encourager un environnement inclusif ?",
+                answer: "Établir des normes de communication pour s'assurer que chacun se sente respecté et valorisé."
+            },
+            {
+                points: 300,
+                question: "Pourquoi la diversité est-elle souvent considérée comme un moteur d'innovation?",
+                answer: "Parce que des équipes diversifiées peuvent apporter des idées variées, ce qui stimule la créativité et améliore la résolution de problèmes ou autres réponses similaires"
+            },
+            {
+                points: 750,
+                question: "Les entreprises dont les membres présentes une très faible diversité ethnique et/ou de genre risque d'être moins performantes financièrement que la moyenne d'environ combien (en pourcentage) ? à plus au moins 10%",
+                answer: "40%"
+            }
+        ]
+
+    },
+];
+
+
+function initializeBoard() {
+    const board = document.getElementById('board');
+    questions.forEach((category, categoryIndex) => {
+        const categoryColumn = document.createElement('div');
+        categoryColumn.className = 'category-column';
+
+        const categoryTitle = document.createElement('div');
+        categoryTitle.className = 'category-title';
+        categoryTitle.textContent = category.category;
+        categoryColumn.appendChild(categoryTitle);
+
+        category.questions.forEach((question, questionIndex) => {
+            const cell = document.createElement('div');
+            cell.className = 'question-cell';
+            cell.textContent = question.points + '$';
+            cell.dataset.category = categoryIndex;
+            cell.dataset.question = questionIndex;
+            cell.addEventListener('click', handleQuestionClick);
+            categoryColumn.appendChild(cell);
+        });
+
+        board.appendChild(categoryColumn);
+    });
+}
+
+function handleQuestionClick(event) {
+    const categoryIndex = event.target.dataset.category;
+    const questionIndex = event.target.dataset.question;
+    currentQuestion = questions[categoryIndex].questions[questionIndex];
+    
+    document.getElementById('question-text').innerText = currentQuestion.question;
+    document.getElementById('question-display').classList.remove('hidden');
+    document.getElementById('answer').innerText = '';
+    document.getElementById('show-answer').classList.remove('hidden');
+    event.target.classList.add('disabled');
+    event.target.removeEventListener('click', handleQuestionClick);
+    
+    startTimer();
+}
+
+function startTimer() {
+    currentTime = 15;
+    document.getElementById('time-left').innerText = currentTime;
+    clearInterval(timer);
+    timer = setInterval(() => {
+        currentTime--;
+        document.getElementById('time-left').innerText = currentTime;
+        if (currentTime === 0) {
+            clearInterval(timer);
+            document.getElementById('show-answer').click();
+        }
+    }, 1000);
+}
+
+document.getElementById('show-answer').addEventListener('click', function() {
+    clearInterval(timer);
+    document.getElementById('answer').innerText = currentQuestion.answer;
+    this.classList.add('hidden');
+    document.getElementById('time-left').innerText = '0';
+});
+
+function resetQuestion() {
+    document.getElementById('question-display').classList.add('hidden');
+    document.getElementById('answer').innerText = '';
+    document.getElementById('show-answer').classList.remove('hidden');
+    currentQuestion = null;
+}
+
+function updateScore(team) {
+    if (currentQuestion) {
+        scores[team] += currentQuestion.points;
+        document.getElementById(`${team}-score`).innerText = scores[team];
+        resetQuestion();
+        
+        // Add confetti effect
+        confetti({
+            particleCount: 1000,
+            spread: 500
+        });
+    }
+}
+
+document.getElementById('team1').addEventListener('click', () => updateScore('team1'));
+document.getElementById('team2').addEventListener('click', () => updateScore('team2'));
+
+initializeBoard();
+
+    </script>
+</body>
+</html>
