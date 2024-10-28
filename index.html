@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
     <title>Onboarding</title>
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -55,7 +55,7 @@
 </head>
 
 <body class="max-w-2xl mx-auto overflow-hidden h-full">
-    <div class="flex gap-1 px-3 z-50">
+    <div class="flex gap-1 z-50">
         <div class="flex-1 flex gap-1">
             <div class="h-[3px] flex-1 bg-black/20">
                 <div class="progress-bar h-full bg-black transition-all duration-500" style="width: 0%;"></div>
@@ -67,7 +67,7 @@
     </div>
 
     <div class="relative h-full">
-        <div class="onboarding-page absolute inset-0 p-6 h-full flex flex-col justify-evenly transition-all duration-500 opacity-100 translate-y-0">
+        <div class="onboarding-page absolute inset-0 p-4 h-full flex flex-col justify-evenly transition-all duration-500 opacity-100 translate-y-0">
             <div class="text-center">
                 <h2 class="text-3xl font-semibold uppercase">WELCOME TO DROP</h2>
                 <p class="font-sans opacity-70 text-balance">Are you ready to find the best sneaker deals?</p>
@@ -82,13 +82,13 @@
             <button class="text-xl uppercase bg-black py-3 px-auto text-white" onclick="nextPage()">Continue</button>
         </div>
 
-        <div class="onboarding-page absolute inset-0 p-6 h-full flex flex-col justify-evenly transition-all duration-500 opacity-0 translate-y-full">
+        <div class="onboarding-page absolute inset-0 p-4 h-full flex flex-col justify-evenly transition-all duration-500 opacity-0 translate-y-full">
             <div class="text-center">
                 <h2 class="text-3xl font-semibold uppercase">SELECT YOUR PREFERENCES</h2>
                 <p class="font-sans opacity-70 text-balance">This will help us show you the deals you want</p>
             </div>
 
-            <div class="h-3/4 flex flex-col gap-4 overflow-y-auto no-scrollbar">
+            <div class="h-3/4 overflow-y-auto no-scrollbar flex flex-col gap-4">
                 <div class="flex">
                     <div class="flex items-center">
                         <div class="mr-1.5 size-2 bg-red-600"></div>
@@ -191,7 +191,7 @@
             <button class="text-xl uppercase bg-black py-3 px-auto text-white" onclick="nextPage()">Continue</button>
         </div>
 
-        <div class="onboarding-page absolute inset-0 p-6 h-full flex flex-col justify-evenly transition-all duration-500 opacity-0 translate-y-full">
+        <div class="onboarding-page absolute inset-0 p-4 h-full flex flex-col justify-evenly transition-all duration-500 opacity-0 translate-y-full">
             <div class="text-center">
                 <h2 class="text-3xl font-semibold uppercase">JOIN THE <span class="text-indigo-600">DISCORD COMMUNITY</span></h2>
                 <p class="font-sans opacity-70 text-balance">Members share daily the best deals they find</p>
