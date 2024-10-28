@@ -10,32 +10,22 @@
     <meta name="mobile-web-app-capable" content="yes">
 
     <style>
-        * {
-            -webkit-tap-highlight-color: transparent;
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            user-select: none;
-        }
-
         html {
             background-color: red;
             overscroll-behavior: none;
             -webkit-overflow-scrolling: touch;
             touch-action: manipulation;
+            user-select: none;
         }
 
         body {
-            height: 100vh;
             margin: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
-        }
-
-        div {
+            height: 100vh;
             background-color: white;
-            height: 100%;
         }
     </style>
 </head>
 <body>
-    <div>hello</div>
+    hello
 </body>
 </html>
