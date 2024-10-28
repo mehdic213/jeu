@@ -56,13 +56,14 @@
 
 <body class="max-w-2xl mx-auto overflow-hidden h-full">
     <div class="flex gap-1 z-50">
-        <div class="flex-1 flex gap-1">
-            <div class="h-[3px] flex-1 bg-black/20">
-                <div class="progress-bar h-full bg-black transition-all duration-500" style="width: 0%;"></div>
-            </div>
-            <div class="h-[3px] flex-1 bg-black/20">
-                <div class="progress-bar h-full bg-black transition-all duration-500" style="width: 0%;"></div>
-            </div>
+        <div class="h-[3px] flex-1 bg-black/20">
+            <div class="progress-bar h-full bg-black transition-all duration-500" style="width: 0%;"></div>
+        </div>
+        <div class="h-[3px] flex-1 bg-black/20">
+            <div class="progress-bar h-full bg-black transition-all duration-500" style="width: 0%;"></div>
+        </div>
+        <div class="h-[3px] flex-1 bg-black/20">
+            <div class="progress-bar h-full bg-black transition-all duration-500" style="width: 0%;"></div>
         </div>
     </div>
 
@@ -88,104 +89,121 @@
                 <p class="font-sans opacity-70 text-balance">This will help us show you the deals you want</p>
             </div>
 
-            <div class="h-3/4 overflow-y-auto no-scrollbar flex flex-col gap-4">
-                <div class="flex">
-                    <div class="flex items-center">
-                        <div class="mr-1.5 size-2 bg-red-600"></div>
-                        <span class="text-xl font-semibold uppercase">SELECT YOUR COUNTRY</span>
+            <div class="h-3/4 overflow-y-auto no-scrollbar">
+                <div class="flex flex-col py-4 gap-8">
+                    <div class="flex">
+                        <div class="flex items-center">
+                            <div class="mr-1.5 size-2 bg-red-600"></div>
+                            <span class="text-xl font-semibold uppercase">SELECT YOUR COUNTRY</span>
+                        </div>
+
+                        <select name="country" class="ml-2 pl-1 font-semibold border border-black bg-white cursor-pointer uppercase" value="UNITED STATES">
+                            <option value="UNITED STATES">UNITED STATES</option>
+                            <option value="UNITED KINGDOM">UNITED KINGDOM</option>
+                            <option value="CANADA">CANADA</option>
+                            <option value="AUSTRALIA">AUSTRALIA</option>
+                        </select>
                     </div>
 
-                    <select name="country" class="ml-2 pl-1 font-semibold border border-black bg-white cursor-pointer uppercase" value="UNITED STATES">
-                        <option value="UNITED STATES">UNITED STATES</option>
-                        <option value="UNITED KINGDOM">UNITED KINGDOM</option>
-                        <option value="CANADA">CANADA</option>
-                        <option value="AUSTRALIA">AUSTRALIA</option>
-                    </select>
+                    <div class="flex flex-col gap-3">
+                        <div class="flex items-center">
+                            <div class="mr-1.5 size-2 bg-red-600"></div>
+                            <span class="text-xl font-semibold uppercase">SELECT BRANDS YOU LIKE</span>
+                        </div>
+
+                        <div class="grid grid-cols-2 auto-rows-[3rem] gap-1 font-sans">
+                            <label class="group">
+                                <input type="checkbox" name="brand" value="nike" class="peer sr-only">
+                                <span class="w-full h-full border border-black bg-white peer-checked:bg-black peer-checked:text-white cursor-pointer flex items-center justify-center">Nike</span>
+                            </label>
+                            <label class="group">
+                                <input type="checkbox" name="brand" value="adidas" class="peer sr-only">
+                                <span class="w-full h-full border border-black bg-white peer-checked:bg-black peer-checked:text-white cursor-pointer flex items-center justify-center">Adidas</span>
+                            </label>
+                            <label class="group">
+                                <input type="checkbox" name="brand" value="puma" class="peer sr-only">
+                                <span class="w-full h-full border border-black bg-white peer-checked:bg-black peer-checked:text-white cursor-pointer flex items-center justify-center">Puma</span>
+                            </label>
+                            <label class="group">
+                                <input type="checkbox" name="brand" value="underarmour" class="peer sr-only">
+                                <span class="w-full h-full border border-black bg-white peer-checked:bg-black peer-checked:text-white cursor-pointer flex items-center justify-center">Under Armour</span>
+                            </label>
+                            <label class="group">
+                                <input type="checkbox" name="brand" value="reebok" class="peer sr-only">
+                                <span class="w-full h-full border border-black bg-white peer-checked:bg-black peer-checked:text-white cursor-pointer flex items-center justify-center">Reebok</span>
+                            </label>
+                            <label class="group">
+                                <input type="checkbox" name="brand" value="newbalance" class="peer sr-only">
+                                <span class="w-full h-full border border-black bg-white peer-checked:bg-black peer-checked:text-white cursor-pointer flex items-center justify-center">New Balance</span>
+                            </label>
+                            <label class="group">
+                                <input type="checkbox" name="brand" value="asics" class="peer sr-only">
+                                <span class="w-full h-full border border-black bg-white peer-checked:bg-black peer-checked:text-white cursor-pointer flex items-center justify-center">Asics</span>
+                            </label>
+                            <label class="group">
+                                <input type="checkbox" name="brand" value="converse" class="peer sr-only">
+                                <span class="w-full h-full border border-black bg-white peer-checked:bg-black peer-checked:text-white cursor-pointer flex items-center justify-center">Converse</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col gap-3">
+                        <div class="flex items-center">
+                            <div class="mr-1.5 size-2 bg-red-600"></div>
+                            <span class="text-xl font-semibold uppercase">SELECT SPORTS YOU LIKE</span>
+                        </div>
+
+                        <div class="grid grid-cols-2 auto-rows-[3rem] gap-1 font-sans">
+                            <label class="group">
+                                <input type="checkbox" name="sport" value="basketball" class="peer sr-only">
+                                <span class="w-full h-full border border-black bg-white peer-checked:bg-black peer-checked:text-white cursor-pointer flex items-center justify-center">Basketball</span>
+                            </label>
+                            <label class="group">
+                                <input type="checkbox" name="sport" value="football" class="peer sr-only">
+                                <span class="w-full h-full border border-black bg-white peer-checked:bg-black peer-checked:text-white cursor-pointer flex items-center justify-center">Football</span>
+                            </label>
+                            <label class="group">
+                                <input type="checkbox" name="sport" value="soccer" class="peer sr-only">
+                                <span class="w-full h-full border border-black bg-white peer-checked:bg-black peer-checked:text-white cursor-pointer flex items-center justify-center">Soccer</span>
+                            </label>
+                            <label class="group">
+                                <input type="checkbox" name="sport" value="tennis" class="peer sr-only">
+                                <span class="w-full h-full border border-black bg-white peer-checked:bg-black peer-checked:text-white cursor-pointer flex items-center justify-center">Tennis</span>
+                            </label>
+                            <label class="group">
+                                <input type="checkbox" name="sport" value="baseball" class="peer sr-only">
+                                <span class="w-full h-full border border-black bg-white peer-checked:bg-black peer-checked:text-white cursor-pointer flex items-center justify-center">Baseball</span>
+                            </label>
+                            <label class="group">
+                                <input type="checkbox" name="sport" value="volleyball" class="peer sr-only">
+                                <span class="w-full h-full border border-black bg-white peer-checked:bg-black peer-checked:text-white cursor-pointer flex items-center justify-center">Volleyball</span>
+                            </label>
+                            <label class="group">
+                                <input type="checkbox" name="sport" value="golf" class="peer sr-only">
+                                <span class="w-full h-full border border-black bg-white peer-checked:bg-black peer-checked:text-white cursor-pointer flex items-center justify-center">Golf</span>
+                            </label>
+                            <label class="group">
+                                <input type="checkbox" name="sport" value="rugby" class="peer sr-only">
+                                <span class="w-full h-full border border-black bg-white peer-checked:bg-black peer-checked:text-white cursor-pointer flex items-center justify-center">Rugby</span>
+                            </label>
+                        </div>
+                    </div>
                 </div>
+            </div>
 
-                <div class="flex flex-col gap-3">
-                    <div class="flex items-center">
-                        <div class="mr-1.5 size-2 bg-red-600"></div>
-                        <span class="text-xl font-semibold uppercase">SELECT BRANDS YOU LIKE</span>
-                    </div>
+            <button class="text-xl uppercase bg-black py-3 px-auto text-white" onclick="nextPage()">Continue</button>
+        </div>
 
-                    <div class="grid grid-cols-2 auto-rows-[3rem] gap-1 font-sans">
-                        <label class="group">
-                            <input type="checkbox" name="brand" value="nike" class="peer sr-only">
-                            <span class="w-full h-full border border-black bg-white peer-checked:bg-black peer-checked:text-white cursor-pointer flex items-center justify-center">Nike</span>
-                        </label>
-                        <label class="group">
-                            <input type="checkbox" name="brand" value="adidas" class="peer sr-only">
-                            <span class="w-full h-full border border-black bg-white peer-checked:bg-black peer-checked:text-white cursor-pointer flex items-center justify-center">Adidas</span>
-                        </label>
-                        <label class="group">
-                            <input type="checkbox" name="brand" value="puma" class="peer sr-only">
-                            <span class="w-full h-full border border-black bg-white peer-checked:bg-black peer-checked:text-white cursor-pointer flex items-center justify-center">Puma</span>
-                        </label>
-                        <label class="group">
-                            <input type="checkbox" name="brand" value="underarmour" class="peer sr-only">
-                            <span class="w-full h-full border border-black bg-white peer-checked:bg-black peer-checked:text-white cursor-pointer flex items-center justify-center">Under Armour</span>
-                        </label>
-                        <label class="group">
-                            <input type="checkbox" name="brand" value="reebok" class="peer sr-only">
-                            <span class="w-full h-full border border-black bg-white peer-checked:bg-black peer-checked:text-white cursor-pointer flex items-center justify-center">Reebok</span>
-                        </label>
-                        <label class="group">
-                            <input type="checkbox" name="brand" value="newbalance" class="peer sr-only">
-                            <span class="w-full h-full border border-black bg-white peer-checked:bg-black peer-checked:text-white cursor-pointer flex items-center justify-center">New Balance</span>
-                        </label>
-                        <label class="group">
-                            <input type="checkbox" name="brand" value="asics" class="peer sr-only">
-                            <span class="w-full h-full border border-black bg-white peer-checked:bg-black peer-checked:text-white cursor-pointer flex items-center justify-center">Asics</span>
-                        </label>
-                        <label class="group">
-                            <input type="checkbox" name="brand" value="converse" class="peer sr-only">
-                            <span class="w-full h-full border border-black bg-white peer-checked:bg-black peer-checked:text-white cursor-pointer flex items-center justify-center">Converse</span>
-                        </label>
-                    </div>
-                </div>
+        <div class="onboarding-page absolute inset-0 p-4 h-full flex flex-col justify-evenly transition-all duration-500 opacity-0 translate-y-full">
+            <div class="text-center">
+                <h2 class="text-3xl font-semibold uppercase">ENABLE NOTIFICATIONS</h2>
+                <p class="font-sans opacity-70 text-balance">Get instant alerts when new deals drop</p>
+            </div>
 
-                <div class="flex flex-col gap-3">
-                    <div class="flex items-center">
-                        <div class="mr-1.5 size-2 bg-red-600"></div>
-                        <span class="text-xl font-semibold uppercase">SELECT SPORTS YOU LIKE</span>
-                    </div>
-
-                    <div class="grid grid-cols-2 auto-rows-[3rem] gap-1 font-sans">
-                        <label class="group">
-                            <input type="checkbox" name="sport" value="basketball" class="peer sr-only">
-                            <span class="w-full h-full border border-black bg-white peer-checked:bg-black peer-checked:text-white cursor-pointer flex items-center justify-center">Basketball</span>
-                        </label>
-                        <label class="group">
-                            <input type="checkbox" name="sport" value="football" class="peer sr-only">
-                            <span class="w-full h-full border border-black bg-white peer-checked:bg-black peer-checked:text-white cursor-pointer flex items-center justify-center">Football</span>
-                        </label>
-                        <label class="group">
-                            <input type="checkbox" name="sport" value="soccer" class="peer sr-only">
-                            <span class="w-full h-full border border-black bg-white peer-checked:bg-black peer-checked:text-white cursor-pointer flex items-center justify-center">Soccer</span>
-                        </label>
-                        <label class="group">
-                            <input type="checkbox" name="sport" value="tennis" class="peer sr-only">
-                            <span class="w-full h-full border border-black bg-white peer-checked:bg-black peer-checked:text-white cursor-pointer flex items-center justify-center">Tennis</span>
-                        </label>
-                        <label class="group">
-                            <input type="checkbox" name="sport" value="baseball" class="peer sr-only">
-                            <span class="w-full h-full border border-black bg-white peer-checked:bg-black peer-checked:text-white cursor-pointer flex items-center justify-center">Baseball</span>
-                        </label>
-                        <label class="group">
-                            <input type="checkbox" name="sport" value="volleyball" class="peer sr-only">
-                            <span class="w-full h-full border border-black bg-white peer-checked:bg-black peer-checked:text-white cursor-pointer flex items-center justify-center">Volleyball</span>
-                        </label>
-                        <label class="group">
-                            <input type="checkbox" name="sport" value="golf" class="peer sr-only">
-                            <span class="w-full h-full border border-black bg-white peer-checked:bg-black peer-checked:text-white cursor-pointer flex items-center justify-center">Golf</span>
-                        </label>
-                        <label class="group">
-                            <input type="checkbox" name="sport" value="rugby" class="peer sr-only">
-                            <span class="w-full h-full border border-black bg-white peer-checked:bg-black peer-checked:text-white cursor-pointer flex items-center justify-center">Rugby</span>
-                        </label>
-                    </div>
-                </div>
+            <div class="h-3/4 overflow-y-auto no-scrollbar">
+                <video class="w-full object-cover" autoplay muted loop playsinline>
+                    <source src="https://static.amo.co/website/videos/graff/20240419-498x1080.mp4#t=1.7" type="video/mp4">
+                </video>
             </div>
 
             <button class="text-xl uppercase bg-black py-3 px-auto text-white" onclick="nextPage()">Continue</button>
