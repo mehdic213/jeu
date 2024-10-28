@@ -35,8 +35,8 @@
             touch-action: manipulation;
             user-select: none;
             -webkit-user-select: none;
-            padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom) 0;
-            height: calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+            padding-top: env(safe-area-inset-top);
+            height: calc(100dvh - env(safe-area-inset-top));
         }
 
         body {
@@ -55,16 +55,18 @@
 
 <body class="relative max-w-2xl mx-auto overflow-hidden h-full">
     <div class="absolute top-0 left-0 right-0 max-w-2xl mx-auto flex gap-1 p-3 z-50">
-        <div class="h-[3px] flex-1 bg-black/20 overflow-hidden">
-            <div id="progress1" class="h-full w-0 bg-black transition-all duration-500 ease-in-out"></div>
-        </div>
-        <div class="h-[3px] flex-1 bg-black/20 overflow-hidden">
-            <div id="progress2" class="h-full w-0 bg-black transition-all duration-500 ease-in-out"></div>
+        <div class="flex-1 flex gap-1">
+            <div class="h-[3px] flex-1 bg-black/20">
+                <div class="progress-bar h-full bg-black transition-all duration-500" style="width: 0%;"></div>
+            </div>
+            <div class="h-[3px] flex-1 bg-black/20">
+                <div class="progress-bar h-full bg-black transition-all duration-500" style="width: 0%;"></div>
+            </div>
         </div>
     </div>
 
-    <div class="flex flex-nowrap h-full transition-all duration-500 ease-in-out" id="sections-container">
-        <div id="section0" class="min-w-full h-full flex flex-col justify-evenly p-6">
+    <div class="relative h-full">
+        <div class="onboarding-page absolute inset-0 p-6 flex flex-col justify-evenly transition-all duration-500 opacity-100 translate-x-0">
             <div class="text-center">
                 <h2 class="text-3xl font-semibold uppercase">WELCOME TO DROP</h2>
                 <p class="font-sans opacity-70 text-balance">Are you ready to find the best sneaker deals?</p>
@@ -79,7 +81,7 @@
             <button class="text-xl uppercase bg-black py-3 px-auto text-white" onclick="nextPage()">Continue</button>
         </div>
 
-        <div id="section1" class="min-w-full h-full flex flex-col justify-evenly p-6">
+        <div class="onboarding-page absolute inset-0 p-6 flex flex-col justify-evenly transition-all duration-500 opacity-0 translate-x-full">
             <div class="text-center">
                 <h2 class="text-3xl font-semibold uppercase">SELECT YOUR PREFERENCES</h2>
                 <p class="font-sans opacity-70 text-balance">This will help us show you the deals you want</p>
@@ -188,7 +190,7 @@
             <button class="text-xl uppercase bg-black py-3 px-auto text-white" onclick="nextPage()">Continue</button>
         </div>
 
-        <div id="section2" class="min-w-full h-full flex flex-col justify-evenly p-6">
+        <div class="onboarding-page absolute inset-0 p-6 flex flex-col justify-evenly transition-all duration-500 opacity-0 translate-x-full">
             <div class="text-center">
                 <h2 class="text-3xl font-semibold uppercase">JOIN THE <span class="text-indigo-600">DISCORD COMMUNITY</span></h2>
                 <p class="font-sans opacity-70 text-balance">Members share daily the best deals they find</p>
@@ -206,22 +208,20 @@
 
     <script>
         let currentPage = 0;
-        const container = document.getElementById('sections-container');
-        
-        function updateProgress() {
-            document.querySelectorAll('[id^="progress"]').forEach((bar, i) => 
-                bar.style.width = i < currentPage ? '100%' : '0%'
-            );
-        }
+        const progressBars = document.querySelectorAll('.progress-bar');
+        const onboardingPages = document.querySelectorAll('.onboarding-page');
 
         function nextPage() {
-            const newPage = currentPage + 1;
-            const sections = document.querySelectorAll('[id^="section"]');
+            if (currentPage < onboardingPages.length - 1) {
+                onboardingPages[currentPage].classList.remove('opacity-100', 'translate-x-0');
+                onboardingPages[currentPage].classList.add('opacity-0', '-translate-x-full');
 
-            if (newPage < sections.length) {
-                container.style.transform = `translateX(-${newPage * 100}%)`;
-                currentPage = newPage;
-                updateProgress();
+                currentPage++;
+
+                onboardingPages[currentPage].classList.remove('opacity-0', 'translate-x-full');
+                onboardingPages[currentPage].classList.add('opacity-100', 'translate-x-0');
+
+                progressBars.forEach((bar, i) => bar.style.width = i < currentPage ? '100%' : '0%');
             }
         }
     </script>
