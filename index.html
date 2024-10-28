@@ -35,19 +35,26 @@
             touch-action: manipulation;
             user-select: none;
             -webkit-user-select: none;
-            margin: env(safe-area-inset-top) 0 env(safe-area-inset-bottom) 0;
-            height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+            padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom) 0;
+            height: calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
         }
 
         body {
             font-family: 'mona-sans', sans-serif;
+        }
 
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
     </style>
 </head>
 
-<body class="max-w-2xl mx-auto overflow-hidden h-full">
-    <div class="absolute top-0 left-0 right-0 flex gap-1 p-3 z-50 max-w-2xl mx-auto">
+<body class="relative max-w-2xl mx-auto overflow-hidden h-full">
+    <div class="absolute top-0 left-0 right-0 max-w-2xl mx-auto flex gap-1 p-3 z-50">
         <div class="h-[3px] flex-1 bg-black/20 overflow-hidden">
             <div id="progress1" class="h-full w-0 bg-black transition-all duration-500 ease-in-out"></div>
         </div>
@@ -63,7 +70,7 @@
                 <p class="font-sans opacity-70 text-balance">Are you ready to find the best sneaker deals?</p>
             </div>
 
-            <div class="h-2/3 flex flex-col gap-4 overflow-y-auto py-3">
+            <div class="h-2/3 flex flex-col gap-4 overflow-y-auto py-3 no-scrollbar">
                 <video class="w-full object-cover" autoplay muted loop playsinline>
                     <source src="https://static.amo.co/website/videos/graff/20240419-498x1080.mp4#t=1.7" type="video/mp4">
                 </video>
@@ -78,7 +85,7 @@
                 <p class="font-sans opacity-70 text-balance">This will help us show you the deals you want</p>
             </div>
 
-            <div class="h-2/3 flex flex-col gap-4 overflow-y-auto py-3">
+            <div class="h-2/3 flex flex-col gap-4 overflow-y-auto py-3 no-scrollbar">
                 <div class="flex">
                     <div class="flex items-center">
                         <div class="mr-1.5 size-2 bg-red-600"></div>
@@ -187,7 +194,7 @@
                 <p class="font-sans opacity-70 text-balance">Members share daily the best deals they find</p>
             </div>
 
-            <div class="h-2/3 overflow-y-auto py-3">
+            <div class="h-2/3 overflow-y-auto py-3 no-scrollbar">
                 <video class="w-full object-cover" autoplay muted loop playsinline>
                     <source src="https://static.amo.co/website/videos/graff/20240419-498x1080.mp4#t=1.7" type="video/mp4">
                 </video>
