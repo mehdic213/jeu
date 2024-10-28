@@ -36,25 +36,27 @@
             user-select: none;
             -webkit-user-select: none;
             padding-top: env(safe-area-inset-top);
-            height: calc(100dvh - env(safe-area-inset-top));
+            padding-bottom: env(safe-area-inset-bottom);
+            height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
         }
 
         body {
             font-family: 'mona-sans', sans-serif;
         }
 
-        .no-scrollbar::-webkit-scrollbar {
+        * {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        *::-webkit-scrollbar {
             display: none;
         }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
+
     </style>
 </head>
 
-<body class="relative max-w-2xl mx-auto overflow-hidden h-full">
-    <div class="absolute top-0 left-0 right-0 max-w-2xl mx-auto flex gap-1 p-3 z-50">
+<body class="max-w-2xl mx-auto overflow-hidden h-full">
+    <div class="flex gap-1 px-3 z-50">
         <div class="flex-1 flex gap-1">
             <div class="h-[3px] flex-1 bg-black/20">
                 <div class="progress-bar h-full bg-black transition-all duration-500" style="width: 0%;"></div>
@@ -66,7 +68,7 @@
     </div>
 
     <div class="relative h-full">
-        <div class="onboarding-page absolute inset-0 p-6 flex flex-col justify-evenly transition-all duration-500 opacity-100 translate-x-0">
+        <div class="onboarding-page absolute inset-0 p-6 flex flex-col justify-evenly transition-all duration-500 opacity-100 translate-y-0">
             <div class="text-center">
                 <h2 class="text-3xl font-semibold uppercase">WELCOME TO DROP</h2>
                 <p class="font-sans opacity-70 text-balance">Are you ready to find the best sneaker deals?</p>
@@ -81,7 +83,7 @@
             <button class="text-xl uppercase bg-black py-3 px-auto text-white" onclick="nextPage()">Continue</button>
         </div>
 
-        <div class="onboarding-page absolute inset-0 p-6 flex flex-col justify-evenly transition-all duration-500 opacity-0 translate-x-full">
+        <div class="onboarding-page absolute inset-0 p-6 flex flex-col justify-evenly transition-all duration-500 opacity-0 translate-y-full">
             <div class="text-center">
                 <h2 class="text-3xl font-semibold uppercase">SELECT YOUR PREFERENCES</h2>
                 <p class="font-sans opacity-70 text-balance">This will help us show you the deals you want</p>
@@ -190,7 +192,7 @@
             <button class="text-xl uppercase bg-black py-3 px-auto text-white" onclick="nextPage()">Continue</button>
         </div>
 
-        <div class="onboarding-page absolute inset-0 p-6 flex flex-col justify-evenly transition-all duration-500 opacity-0 translate-x-full">
+        <div class="onboarding-page absolute inset-0 p-6 flex flex-col justify-evenly transition-all duration-500 opacity-0 translate-y-full">
             <div class="text-center">
                 <h2 class="text-3xl font-semibold uppercase">JOIN THE <span class="text-indigo-600">DISCORD COMMUNITY</span></h2>
                 <p class="font-sans opacity-70 text-balance">Members share daily the best deals they find</p>
@@ -213,13 +215,13 @@
 
         function nextPage() {
             if (currentPage < onboardingPages.length - 1) {
-                onboardingPages[currentPage].classList.remove('opacity-100', 'translate-x-0');
-                onboardingPages[currentPage].classList.add('opacity-0', '-translate-x-full');
+                onboardingPages[currentPage].classList.remove('opacity-100', 'translate-y-0');
+                onboardingPages[currentPage].classList.add('opacity-0', '-translate-y-full');
 
                 currentPage++;
 
-                onboardingPages[currentPage].classList.remove('opacity-0', 'translate-x-full');
-                onboardingPages[currentPage].classList.add('opacity-100', 'translate-x-0');
+                onboardingPages[currentPage].classList.remove('opacity-0', 'translate-y-full');
+                onboardingPages[currentPage].classList.add('opacity-100', 'translate-y-0');
 
                 progressBars.forEach((bar, i) => bar.style.width = i < currentPage ? '100%' : '0%');
             }
