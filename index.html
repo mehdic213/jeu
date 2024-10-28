@@ -36,8 +36,7 @@
             user-select: none;
             -webkit-user-select: none;
             padding-top: env(safe-area-inset-top);
-            padding-bottom: env(safe-area-inset-bottom);
-            height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+            height: calc(100dvh - env(safe-area-inset-top));
         }
 
         body {
@@ -68,7 +67,7 @@
     </div>
 
     <div class="relative h-full">
-        <div class="onboarding-page absolute inset-0 p-6 flex flex-col justify-evenly transition-all duration-500 opacity-100 translate-y-0">
+        <div class="onboarding-page absolute inset-0 p-6 h-full flex flex-col justify-evenly transition-all duration-500 opacity-100 translate-y-0">
             <div class="text-center">
                 <h2 class="text-3xl font-semibold uppercase">WELCOME TO DROP</h2>
                 <p class="font-sans opacity-70 text-balance">Are you ready to find the best sneaker deals?</p>
@@ -83,7 +82,7 @@
             <button class="text-xl uppercase bg-black py-3 px-auto text-white" onclick="nextPage()">Continue</button>
         </div>
 
-        <div class="onboarding-page absolute inset-0 p-6 flex flex-col justify-evenly transition-all duration-500 opacity-0 translate-y-full">
+        <div class="onboarding-page absolute inset-0 p-6 h-full flex flex-col justify-evenly transition-all duration-500 opacity-0 translate-y-full">
             <div class="text-center">
                 <h2 class="text-3xl font-semibold uppercase">SELECT YOUR PREFERENCES</h2>
                 <p class="font-sans opacity-70 text-balance">This will help us show you the deals you want</p>
@@ -192,7 +191,7 @@
             <button class="text-xl uppercase bg-black py-3 px-auto text-white" onclick="nextPage()">Continue</button>
         </div>
 
-        <div class="onboarding-page absolute inset-0 p-6 flex flex-col justify-evenly transition-all duration-500 opacity-0 translate-y-full">
+        <div class="onboarding-page absolute inset-0 p-6 h-full flex flex-col justify-evenly transition-all duration-500 opacity-0 translate-y-full">
             <div class="text-center">
                 <h2 class="text-3xl font-semibold uppercase">JOIN THE <span class="text-indigo-600">DISCORD COMMUNITY</span></h2>
                 <p class="font-sans opacity-70 text-balance">Members share daily the best deals they find</p>
