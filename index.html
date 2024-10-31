@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
     <title>Onboarding</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com/3.4.14"></script>
 
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -68,13 +68,13 @@
     </div>
 
     <div class="relative h-full">
-        <div class="onboarding-page absolute inset-0 p-4 h-full flex flex-col justify-evenly transition-all duration-500 opacity-100 translate-y-0">
-            <div class="text-center">
+        <div class="onboarding-page absolute inset-0 p-4 h-full flex flex-col justify-between transition-all duration-500 opacity-100 translate-y-0">
+            <div class="text-center py-3">
                 <h2 class="text-3xl font-semibold uppercase">WELCOME TO DROP</h2>
                 <p class="font-sans opacity-70 text-balance">Are you ready to find the best sneaker deals?</p>
             </div>
 
-            <div class="h-3/4 overflow-y-auto no-scrollbar">
+            <div class="grow overflow-y-auto no-scrollbar">
                 <video class="w-full object-cover" autoplay muted loop playsinline>
                     <source src="https://static.amo.co/website/videos/graff/20240419-498x1080.mp4#t=1.7" type="video/mp4">
                 </video>
@@ -83,13 +83,13 @@
             <button class="text-xl uppercase bg-black py-3 px-auto text-white" onclick="nextPage()">Continue</button>
         </div>
 
-        <div class="onboarding-page absolute inset-0 p-4 h-full flex flex-col justify-evenly transition-all duration-500 opacity-0 translate-y-full">
-            <div class="text-center">
+        <div class="onboarding-page absolute inset-0 p-4 h-full flex flex-col justify-between transition-all duration-500 opacity-0 translate-y-full">
+            <div class="text-center py-3">
                 <h2 class="text-3xl font-semibold uppercase">SELECT YOUR PREFERENCES</h2>
                 <p class="font-sans opacity-70 text-balance">This will help us show you the deals you want</p>
             </div>
 
-            <div class="h-3/4 overflow-y-auto no-scrollbar">
+            <div class="grow overflow-y-auto no-scrollbar">
                 <div class="flex flex-col py-4 gap-8">
                     <div class="flex">
                         <div class="flex items-center">
@@ -102,6 +102,116 @@
                             <option value="UNITED KINGDOM">UNITED KINGDOM</option>
                             <option value="CANADA">CANADA</option>
                             <option value="AUSTRALIA">AUSTRALIA</option>
+                        </select>
+                    </div>
+
+                    <div class="flex">
+                        <div class="flex items-center justify-center shrink-0">
+                            <div class="mr-1.5 size-2 bg-red-600"></div>
+                            <span class="text-xl font-semibold uppercase">SELECT YOUR SIZE</span>
+                        </div>
+
+                        <select name="size" class="ml-2 pl-1 font-semibold border border-black bg-white cursor-pointer uppercase" value="ALL">
+                            <option class="text-black bg-white" value="ALL">ALL</option>
+                            <optgroup class="text-red-600 bg-black/5" label="MEN">
+                            <option class="text-black bg-white" value="3">3</option>
+                            <option class="text-black bg-white" value="3.5">3.5</option>
+                            <option class="text-black bg-white" value="4">4</option>
+                            <option class="text-black bg-white" value="4.5">4.5</option>
+                            <option class="text-black bg-white" value="5">5</option>
+                            <option class="text-black bg-white" value="5.5">5.5</option>
+                            <option class="text-black bg-white" value="6">6</option>
+                            <option class="text-black bg-white" value="6.5">6.5</option>
+                            <option class="text-black bg-white" value="7">7</option>
+                            <option class="text-black bg-white" value="7.5">7.5</option>
+                            <option class="text-black bg-white" value="8">8</option>
+                            <option class="text-black bg-white" value="8.5">8.5</option>
+                            <option class="text-black bg-white" value="9">9</option>
+                            <option class="text-black bg-white" value="9.5">9.5</option>
+                            <option class="text-black bg-white" value="10">10</option>
+                            <option class="text-black bg-white" value="10.5">10.5</option>
+                            <option class="text-black bg-white" value="11">11</option>
+                            <option class="text-black bg-white" value="11.5">11.5</option>
+                            <option class="text-black bg-white" value="12">12</option>
+                            <option class="text-black bg-white" value="12.5">12.5</option>
+                            <option class="text-black bg-white" value="13">13</option>
+                            <option class="text-black bg-white" value="13.5">13.5</option>
+                            <option class="text-black bg-white" value="14">14</option>
+                            <option class="text-black bg-white" value="14.5">14.5</option>
+                            <option class="text-black bg-white" value="15">15</option>
+                            <option class="text-black bg-white" value="15.5">15.5</option>
+                            <option class="text-black bg-white" value="16">16</option>
+                            <option class="text-black bg-white" value="16.5">16.5</option>
+                            <option class="text-black bg-white" value="17">17</option>
+                            <option class="text-black bg-white" value="17.5">17.5</option>
+                            <option class="text-black bg-white" value="18">18</option>
+                            <option class="text-black bg-white" value="18.5">18.5</option>
+                            <option class="text-black bg-white" value="19.5">19.5</option>
+                            </optgroup>
+                            <optgroup class="text-red-600 bg-black/5" label="WOMEN">
+                            <option class="text-black bg-white" value="4W">4W</option>
+                            <option class="text-black bg-white" value="4.5W">4.5W</option>
+                            <option class="text-black bg-white" value="5W">5W</option>
+                            <option class="text-black bg-white" value="5.5W">5.5W</option>
+                            <option class="text-black bg-white" value="6W">6W</option>
+                            <option class="text-black bg-white" value="6.5W">6.5W</option>
+                            <option class="text-black bg-white" value="7W">7W</option>
+                            <option class="text-black bg-white" value="7.5W">7.5W</option>
+                            <option class="text-black bg-white" value="8W">8W</option>
+                            <option class="text-black bg-white" value="8.5W">8.5W</option>
+                            <option class="text-black bg-white" value="9W">9W</option>
+                            <option class="text-black bg-white" value="9.5W">9.5W</option>
+                            <option class="text-black bg-white" value="10W">10W</option>
+                            <option class="text-black bg-white" value="10.5W">10.5W</option>
+                            <option class="text-black bg-white" value="11W">11W</option>
+                            <option class="text-black bg-white" value="11.5W">11.5W</option>
+                            <option class="text-black bg-white" value="12W">12W</option>
+                            <option class="text-black bg-white" value="12.5W">12.5W</option>
+                            <option class="text-black bg-white" value="13W">13W</option>
+                            <option class="text-black bg-white" value="13.5W">13.5W</option>
+                            <option class="text-black bg-white" value="14W">14W</option>
+                            <option class="text-black bg-white" value="14.5W">14.5W</option>
+                            <option class="text-black bg-white" value="15W">15W</option>
+                            <option class="text-black bg-white" value="15.5W">15.5W</option>
+                            <option class="text-black bg-white" value="16W">16W</option>
+                            <option class="text-black bg-white" value="16.5W">16.5W</option>
+                            <option class="text-black bg-white" value="17W">17W</option>
+                            <option class="text-black bg-white" value="18W">18W</option>
+                            </optgroup>
+                            <optgroup class="text-red-600 bg-black/5" label="OLDER KIDS">
+                            <option class="text-black bg-white" value="1Y">1Y</option>
+                            <option class="text-black bg-white" value="1.5Y">1.5Y</option>
+                            <option class="text-black bg-white" value="2Y">2Y</option>
+                            <option class="text-black bg-white" value="2.5Y">2.5Y</option>
+                            <option class="text-black bg-white" value="3Y">3Y</option>
+                            <option class="text-black bg-white" value="3.5Y">3.5Y</option>
+                            <option class="text-black bg-white" value="4Y">4Y</option>
+                            <option class="text-black bg-white" value="4.5Y">4.5Y</option>
+                            <option class="text-black bg-white" value="5Y">5Y</option>
+                            <option class="text-black bg-white" value="5.5Y">5.5Y</option>
+                            <option class="text-black bg-white" value="6Y">6Y</option>
+                            <option class="text-black bg-white" value="6.5Y">6.5Y</option>
+                            <option class="text-black bg-white" value="7Y">7Y</option>
+                            </optgroup>
+                            <optgroup class="text-red-600 bg-black/5" label="YOUNGER KIDS">
+                            <option class="text-black bg-white" value="1C">1C</option>
+                            <option class="text-black bg-white" value="2C">2C</option>
+                            <option class="text-black bg-white" value="3C">3C</option>
+                            <option class="text-black bg-white" value="4C">4C</option>
+                            <option class="text-black bg-white" value="5C">5C</option>
+                            <option class="text-black bg-white" value="6C">6C</option>
+                            <option class="text-black bg-white" value="7C">7C</option>
+                            <option class="text-black bg-white" value="8C">8C</option>
+                            <option class="text-black bg-white" value="9C">9C</option>
+                            <option class="text-black bg-white" value="10C">10C</option>
+                            <option class="text-black bg-white" value="10.5C">10.5C</option>
+                            <option class="text-black bg-white" value="11C">11C</option>
+                            <option class="text-black bg-white" value="11.5C">11.5C</option>
+                            <option class="text-black bg-white" value="12C">12C</option>
+                            <option class="text-black bg-white" value="12.5C">12.5C</option>
+                            <option class="text-black bg-white" value="13C">13C</option>
+                            <option class="text-black bg-white" value="13.5C">13.5C</option>
+                            </optgroup>
                         </select>
                     </div>
 
@@ -194,13 +304,13 @@
             <button class="text-xl uppercase bg-black py-3 px-auto text-white" onclick="nextPage()">Continue</button>
         </div>
 
-        <div class="onboarding-page absolute inset-0 p-4 h-full flex flex-col justify-evenly transition-all duration-500 opacity-0 translate-y-full">
-            <div class="text-center">
+        <div class="onboarding-page absolute inset-0 p-4 h-full flex flex-col justify-between transition-all duration-500 opacity-0 translate-y-full">
+            <div class="text-center py-3">
                 <h2 class="text-3xl font-semibold uppercase">ENABLE NOTIFICATIONS</h2>
                 <p class="font-sans opacity-70 text-balance">Get instant alerts when new deals drop</p>
             </div>
 
-            <div class="h-3/4 overflow-y-auto no-scrollbar">
+            <div class="grow overflow-y-auto no-scrollbar">
                 <video class="w-full object-cover" autoplay muted loop playsinline>
                     <source src="https://static.amo.co/website/videos/graff/20240419-498x1080.mp4#t=1.7" type="video/mp4">
                 </video>
@@ -209,13 +319,13 @@
             <button class="text-xl uppercase bg-black py-3 px-auto text-white" onclick="nextPage()">Continue</button>
         </div>
 
-        <div class="onboarding-page absolute inset-0 p-4 h-full flex flex-col justify-evenly transition-all duration-500 opacity-0 translate-y-full">
-            <div class="text-center">
+        <div class="onboarding-page absolute inset-0 p-4 h-full flex flex-col justify-between transition-all duration-500 opacity-0 translate-y-full">
+            <div class="text-center py-3">
                 <h2 class="text-3xl font-semibold uppercase">JOIN THE <span class="text-indigo-600">DISCORD COMMUNITY</span></h2>
                 <p class="font-sans opacity-70 text-balance">Members share daily the best deals they find</p>
             </div>
 
-            <div class="h-3/4 overflow-y-auto no-scrollbar">
+            <div class="grow overflow-y-auto no-scrollbar">
                 <video class="w-full object-cover" autoplay muted loop playsinline>
                     <source src="https://static.amo.co/website/videos/graff/20240419-498x1080.mp4#t=1.7" type="video/mp4">
                 </video>
