@@ -12,6 +12,8 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="mobile-web-app-capable" content="yes">
 
+    <meta name="theme-color" content="#faf4ee">
+
     <style>
         @font-face {
             font-family: mona-sans;
@@ -27,6 +29,7 @@
         }
 
         html {
+            background-color: #faf4ee;
             overscroll-behavior: none;
             -webkit-overflow-scrolling: touch;
             touch-action: manipulation;
@@ -70,13 +73,13 @@
 
     <div class="h-full">
         <div class="onboarding-page h-full flex flex-col justify-between p-4">
-            <div class="grow overflow-y-auto no-scrollbar -m-4">
+            <div class="grow overflow-y-auto no-scrollbar -m-8">
                 <video class="w-full object-cover" autoplay muted loop playsinline>
                     <source src="https://static.amo.co/website/videos/graff/20240419-498x1080.mp4#t=1.7" type="video/mp4">
                 </video>
             </div>
 
-            <button class="text-xl uppercase bg-black py-3 px-auto text-white" onclick="nextPage()">Get Started</button>
+            <button class="text-xl uppercase bg-black py-3 px-auto text-white z-50" onclick="nextPage()">Get Started</button>
         </div>
 
         <div class="onboarding-page h-full flex flex-col justify-between p-4 hidden">
@@ -377,8 +380,6 @@
         const onboardingPages = document.querySelectorAll('.onboarding-page');
 
         function nextPage() {
-            document.getElementById('progress-bar').classList.remove('hidden');
-
             if (currentPage <= onboardingPages.length) {
                 onboardingPages[currentPage++].classList.add('hidden');
                 onboardingPages[currentPage].classList.remove('hidden');
