@@ -36,7 +36,8 @@
             user-select: none;
             -webkit-user-select: none;
             padding-top: env(safe-area-inset-top);
-            height: calc(100dvh - env(safe-area-inset-top));
+            padding-bottom: env(safe-area-inset-bottom);
+            height: calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
         }
 
         body {
@@ -331,7 +332,7 @@
                 </video>
             </div>
 
-            <button class="text-xl uppercase bg-indigo-600 py-3 px-auto text-white">End</button>
+            <button class="text-xl uppercase bg-indigo-600 py-3 px-auto text-white" onclick="window.open('https://discord.gg/your-invite-link', '_blank')">Join the discord</button>
         </div>
     </div>
 
