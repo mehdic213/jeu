@@ -12,8 +12,6 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="mobile-web-app-capable" content="yes">
 
-    <meta name="theme-color" content="#faf4ee">
-
     <style>
         @font-face {
             font-family: mona-sans;
@@ -29,7 +27,6 @@
         }
 
         html {
-            background-color: #faf4ee;
             overscroll-behavior: none;
             -webkit-overflow-scrolling: touch;
             touch-action: manipulation;
@@ -56,7 +53,7 @@
 </head>
 
 <body class="relative max-w-2xl mx-auto overflow-hidden h-full">
-    <div class="absolute top-0 left-0 right-0 flex gap-1 z-50 m-1">
+    <div id="progress-bar" class="absolute top-0 left-0 right-0 flex gap-1 z-50 m-1 hidden">
         <div class="h-1 flex-1 bg-black/20">
             <div class="progress-bar h-full bg-black transition-all duration-500" style="width: 0%;"></div>
         </div>
@@ -69,7 +66,7 @@
     </div>
 
     <div class="h-full">
-        <div class="onboarding-page flex-none h-full flex flex-col justify-between p-4">
+        <div class="onboarding-page h-full flex flex-col justify-between p-4">
             <div class="text-center py-6">
                 <h2 class="text-3xl font-semibold uppercase">WELCOME TO DROP</h2>
                 <p class="font-sans opacity-70 text-balance">Are you ready to find the best sneaker deals?</p>
@@ -81,10 +78,35 @@
                 </video>
             </div>
 
-            <button class="text-xl uppercase bg-black py-3 px-auto text-white" onclick="nextPage()">Continue</button>
+            <div id="signin-content" class="flex flex-col gap-1.5">
+                <form action="signin/email" method="POST" hx-post="signin/email" hx-target="#signin-content" hx-swap="outerHTML" class="contents">
+                    <input class="border border-black/25 w-full py-3 px-3 font-sans" type="email" name="email" placeholder="Enter your email address" required/>
+                    <button class="text-xl uppercase bg-black w-full py-3 text-white" type="submit">CONTINUE WITH EMAIL</button>
+                </form>
+
+                <div class="relative flex w-full items-center">
+                    <div class="mr-4 flex-grow border-b border-black/25"></div>
+                    <div class="text-center text-black/50">OR</div>
+                    <div class="ml-4 flex-grow border-b border-black/25"></div>
+                </div>
+
+                <button class="flex w-full py-3 text-xl uppercase items-center justify-center bg-black/5 border border-black/25" onclick="googleSignIn()">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/768px-Google_%22G%22_logo.svg.png" alt="Google logo" class="mr-2 h-7" />
+                    CONTINUE WITH GOOGLE
+                </button>
+
+                <button class="flex w-full py-3 text-xl uppercase items-center justify-center bg-black/5 border border-black/25" onclick="appleSignIn()">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/800px-Apple_logo_black.svg.png" alt="Apple logo" class="mr-2 -mt-2 h-7" />
+                    CONTINUE WITH APPLE
+                </button>
+
+                <button class="text-xl uppercase w-full py-3 bg-black/5 border border-black/25" onclick="nextPage()">CONTINUE AS GUEST</button>
+
+                <p class="text-center text-sm font-sans opacity-70">By continuing, you agree to our <a class="underline" href="terms-of-service" target="_blank">Terms of Service</a> and <a class="underline" href="privacy-policy" target="_blank">Privacy Policy</a>.</p>
+            </div>
         </div>
 
-        <div class="onboarding-page hidden flex-none h-full flex flex-col justify-between p-4">
+        <div class="onboarding-page h-full flex flex-col justify-between p-4 hidden">
             <div class="text-center py-6">
                 <h2 class="text-3xl font-semibold uppercase">SELECT YOUR PREFERENCES</h2>
                 <p class="font-sans opacity-70 text-balance">This will help us show you the deals you want</p>
@@ -305,7 +327,7 @@
             <button class="text-xl uppercase bg-black py-3 px-auto text-white" onclick="nextPage()">Continue</button>
         </div>
 
-        <div class="onboarding-page hidden flex-none h-full flex flex-col justify-between p-4">
+        <div class="onboarding-page h-full flex flex-col justify-between p-4 hidden">
             <div class="text-center py-6">
                 <h2 class="text-3xl font-semibold uppercase">ENABLE NOTIFICATIONS</h2>
                 <p class="font-sans opacity-70 text-balance">Get instant alerts when new deals drop</p>
@@ -320,7 +342,7 @@
             <button class="text-xl uppercase bg-black py-3 px-auto text-white" onclick="nextPage()">Continue</button>
         </div>
 
-        <div class="onboarding-page hidden flex-none h-full flex flex-col justify-between p-4">
+        <div class="onboarding-page h-full flex flex-col justify-between p-4 hidden">
             <div class="text-center py-6">
                 <h2 class="text-3xl font-semibold uppercase">JOIN THE <span class="text-indigo-600">DISCORD COMMUNITY</span></h2>
                 <p class="font-sans opacity-70 text-balance">Members share daily the best deals they find</p>
@@ -342,6 +364,8 @@
         const onboardingPages = document.querySelectorAll('.onboarding-page');
 
         function nextPage() {
+            document.getElementById('progress-bar').classList.remove('hidden');
+
             if (currentPage <= onboardingPages.length) {
                 onboardingPages[currentPage++].classList.add('hidden');
                 onboardingPages[currentPage].classList.remove('hidden');
