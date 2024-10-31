@@ -73,13 +73,13 @@
 
     <div class="h-full">
         <div class="onboarding-page h-full flex flex-col justify-between p-4">
-            <div class="grow overflow-y-auto no-scrollbar -m-20">
+            <div class="grow overflow-y-auto no-scrollbar -m-24">
                 <video class="w-full object-cover" autoplay muted loop playsinline>
                     <source src="https://static.amo.co/website/videos/graff/20240419-498x1080.mp4#t=1.7" type="video/mp4">
                 </video>
             </div>
 
-            <button class="text-xl uppercase bg-black/90 py-3 px-auto text-white z-50" onclick="nextPage()">Get Started</button>
+            <button class="text-xl uppercase bg-black/80 backdrop-blur py-3 px-auto text-white z-50" onclick="nextPage()">Get Started</button>
         </div>
 
         <div class="onboarding-page h-full flex flex-col justify-between p-4 hidden">
@@ -97,7 +97,7 @@
             <div id="signin-content" class="flex flex-col gap-1.5">
                 <form action="signin/email" method="POST" hx-post="signin/email" hx-target="#signin-content" hx-swap="outerHTML" class="contents">
                     <input class="border border-black/25 w-full py-3 px-3 font-sans" type="email" name="email" placeholder="Enter your email address" required/>
-                    <button class="text-xl uppercase bg-black/90 w-full py-3 text-white" type="submit">CONTINUE WITH EMAIL</button>
+                    <button class="text-xl uppercase bg-black w-full py-3 text-white" type="submit">CONTINUE WITH EMAIL</button>
                 </form>
 
                 <div class="relative flex w-full items-center">
@@ -340,7 +340,7 @@
                 </div>
             </div>
 
-            <button class="text-xl uppercase bg-black/90 py-3 px-auto text-white" onclick="nextPage()">Continue</button>
+            <button class="text-xl uppercase bg-black py-3 px-auto text-white" onclick="nextPage()">Continue</button>
         </div>
 
         <div class="onboarding-page h-full flex flex-col justify-between p-4 hidden">
@@ -355,7 +355,7 @@
                 </video>
             </div>
 
-            <button class="text-xl uppercase bg-black/90 py-3 px-auto text-white" onclick="nextPage()">Continue</button>
+            <button class="text-xl uppercase bg-black py-3 px-auto text-white" onclick="nextPage()">Continue</button>
         </div>
 
         <div class="onboarding-page h-full flex flex-col justify-between p-4 hidden">
